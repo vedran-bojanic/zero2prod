@@ -1,9 +1,9 @@
 //! src/routes/subscriptions.rs
 
-use actix_web::{web, HttpResponse};
+use actix_web::{HttpResponse, web};
+use chrono::Utc;
 use sqlx::PgPool;
 use uuid::Uuid;
-use chrono::Utc;
 
 #[derive(serde::Deserialize)]
 pub struct FormData {
@@ -21,7 +21,9 @@ pub async fn subscribe(form: web::Form<FormData>, pool: web::Data<PgPool>) -> Ht
         form.email,
         form.name,
         Utc::now(),
-    ).execute(pool.get_ref()).await
+    )
+    .execute(pool.get_ref())
+    .await
     {
         Ok(_) => HttpResponse::Ok().finish(),
         Err(e) => {
