@@ -18,9 +18,16 @@ tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
 serde = { version = "1.0.228", features = ["derive"] }
 uuid = { version = "1.23.1", features = ["v4"] }
 chrono = "0.4.44"
+tracing = { version = "0.1.44", features = ["log"]}
+tracing-subscriber = { version = "0.3.23", features = ["registry", "env-filter"] }
+tracing-bunyan-formatter = "0.3.10"
+tracing-log = "0.2.0"
+tracing-actix-web = "0.7.21"
+secrecy = { version = "0.10.3", features = ["serde"]}
 
 [dev-dependencies]
 reqwest = { version = "0.13.2", features = ["json"] }
+once_cell = "1.21.4"
 
 [dependencies.sqlx]
 version = "0.7"
